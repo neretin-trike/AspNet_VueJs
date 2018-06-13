@@ -1,0 +1,14 @@
+﻿html {
+    font-size: 62.5%;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: white;
+}
+
+.container{
+    max-width: 120rem;
+    margin: 0 auto;
+}

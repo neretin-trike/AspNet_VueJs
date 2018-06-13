@@ -1,0 +1,13 @@
+﻿#app {
+    font-size: 1.4rem;
+}
+
+.table_content{
+    border: solid 1px black;
+    border-collapse: collapse;
+}
+
+.table_content, .table_content th, .table_content td{
+    border: solid 1px black;
+    padding: 0.4rem 1rem;
+}
