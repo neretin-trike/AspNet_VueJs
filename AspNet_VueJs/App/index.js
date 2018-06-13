@@ -1,13 +1,16 @@
 ﻿import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
+Vue.use(VueAxios, axios)
 
 const routes = [
     {
-        path: '/',
+        path: '/Address/Info/:index',
         component: App
     }
 ]
@@ -18,6 +21,14 @@ const router = new VueRouter({
 
 new Vue({
     el: '#app',
-    template: "<div><router-view></router-view></div>",
-    router
+    data: {
+        addresses: []
+    },
+    router,
+    created() {
+        this.axios.get('/api/Address/Addresses').then((response) => {
+            console.log(response.data)
+            this.addresses = response.data
+        })
+    }
 })
