@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import AddressInfo from './App.vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import modal from './ModalAddress.vue'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -22,8 +23,20 @@ const router = new VueRouter({
 new Vue({
     el: '#app',
     data: {
-        addresses: []
-    },
+		addresses: [],
+		isModalVisible: false
+	},
+	components: {
+		modal
+	},
+	methods: {
+		showModal(){
+			this.isModalVisible = true;
+		},
+		closeModal(){
+			this.isModalVisible = false;
+		}
+	},
     router,
     created() {
         this.axios.get('/api/Address/Addresses').then((response) => {

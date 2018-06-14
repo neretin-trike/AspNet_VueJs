@@ -6,6 +6,9 @@
         <p>{{address.middlename}}</p>
         <p>{{address.address}}</p>
         <p>{{address.phone}}</p>
+		<button>Изменить</button>
+		<button>Удалить</button>
+		<button>Закрыть</button>
     </div>
 </template>
 

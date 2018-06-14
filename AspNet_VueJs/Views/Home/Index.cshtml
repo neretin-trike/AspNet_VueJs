@@ -20,7 +20,14 @@
                 <td>{{address.middlename}}</td>
             </tr>
         </table>
-        <a href="/">Home</a>
+
+		<div class="menu_table">
+			<button type="button" class="btn" v-on:click="showModal">Добавить</button>
+			<a href="/">Home</a>
+		</div>
+
+		<modal v-show="isModalVisible" v-on:close="closeModal"/>
+		
         <router-view></router-view>
     </div>
 </main>
