@@ -23,6 +23,7 @@ namespace AspNet_VueJs.Controllers
         [Produces("application/json")]
         public AddressItemViewModel Info(int addressIndex)
         {
+            this.ControllerContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
             var result = AddressesViewModel.Instance.AddressesList.Where(a => a.Index == addressIndex).FirstOrDefault();
             return result;
         }

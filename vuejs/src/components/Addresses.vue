@@ -91,13 +91,4 @@
     .menu_table {
         margin: 1rem 0;
     }
-
-    .address_info {
-        background: #eeeee5;
-        border: 1px dashed #abab9a;
-        padding: 1rem;
-        margin: 2rem 1rem;
-        font: 1.4rem Tahoma;
-        color: #2c2c2c;
-    }
 </style>
