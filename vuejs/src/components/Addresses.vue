@@ -22,14 +22,17 @@
             <button type="button" class="btn" v-on:click="showModal">Добавить</button>
             <a href="/">Home</a>
         </div>
-    </div>
 
-    <!--<modal v-show="isModalVisible" v-on:close="closeModal">
-        <modal-content slot="body"></modal-content>
-    </modal>-->
+        <modal-dialog v-show="isModalVisible" v-on:close="closeModal">
+            <modal-address-modify slot="body"></modal-address-modify>
+        </modal-dialog>
+    </div>
 </template>
 
 <script>
+    import modalDialog from '../components/modals/ModalDialogBase.vue'
+    import modalAddressModify from '../components/modals/ModalDialogAddressModify.vue'
+
     export default {
         name: "Addresses",
         data: function () {
@@ -37,7 +40,12 @@
                 addresses: [],
                 isModalVisible: false
             }
-        },methods: {
+        },
+        components:{
+            modalDialog,
+            modalAddressModify
+        },
+        methods: {
             showModal(){
                 this.isModalVisible = true;
             },

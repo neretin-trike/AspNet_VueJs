@@ -32,6 +32,7 @@ namespace AspNet_VueJs.Controllers
         [Produces("application/json")]
         public void Add([FromBody]AddressItemViewModel item)
         {
+            this.ControllerContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
             int newIndex = 1;
             while (true) {
                 var isIndexExists = AddressesViewModel.Instance.AddressesList.Any(address => address.Index == newIndex);
