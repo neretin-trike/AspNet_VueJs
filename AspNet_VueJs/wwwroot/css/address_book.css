@@ -1,13 +1,37 @@
 ﻿#app {
-    font-size: 1.4rem;
+	font-size: 1.4rem;
+	padding: 2rem;
 }
 
 .table_content{
-    border: solid 1px black;
+	min-width: 40rem;
     border-collapse: collapse;
+  	color: #686461;
 }
 
-.table_content, .table_content th, .table_content td{
-    border: solid 1px black;
+.table_content caption{
+	padding: 0.4rem 1rem;
+	color: white;
+	background: #8FD4C1;
+	font-size: 1.8rem;
+	text-align: left;
+	font-weight: bold;
+}
+
+.table_content th{
+    border-bottom: 3px solid #B9B29F;
+  	text-align: left;
     padding: 0.4rem 1rem;
+}
+
+.table_content td{
+    padding: 0.4rem 1rem;
+}
+
+.table_content tr:nth-child(odd) {
+	background: white;
+}
+
+.table_content tr:nth-child(even) {
+	background: #E8E6D1;
 }
