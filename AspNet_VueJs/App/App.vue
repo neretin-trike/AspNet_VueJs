@@ -1,5 +1,5 @@
 ﻿<template>
-    <div id="home">
+    <div class="address_info">
 		<p>{{address.index}}</p>
         <p>{{address.surname}}</p>
         <p>{{address.name}}</p>
