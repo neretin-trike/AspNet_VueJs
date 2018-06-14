@@ -5,13 +5,17 @@ Vue.use(VueRouter)
 
 const About = {template: '<h1>About</h1>'}
 
-let router = new Router({
-	routes:[
-		{
-			path: '/about',
-			component: About
-		}
-	]
+let router = new VueRouter({
+  routes:[
+    {
+      path: '/',
+      component: {template: '<h1>Home</h1>'}
+    },
+    {
+      path: '/about',
+      component: About
+    }
+  ]
 })
 
 export default router
