@@ -4,6 +4,7 @@ import AddressInfo from './App.vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import modal from './ModalAddress.vue'
+import modalContent from './AddressInput.vue'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -27,7 +28,8 @@ new Vue({
 		isModalVisible: false
 	},
 	components: {
-		modal
+		modal,
+		modalContent
 	},
 	methods: {
 		showModal(){

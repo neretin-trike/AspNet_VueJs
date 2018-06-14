@@ -26,7 +26,9 @@
 			<a href="/">Home</a>
 		</div>
 
-		<modal v-show="isModalVisible" v-on:close="closeModal"/>
+		<modal v-show="isModalVisible" v-on:close="closeModal">
+			<modal-content slot="body"></modal-content>
+		</modal>
 		
         <router-view></router-view>
     </div>
