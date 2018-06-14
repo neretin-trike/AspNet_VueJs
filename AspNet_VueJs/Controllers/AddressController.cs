@@ -28,9 +28,10 @@ namespace AspNet_VueJs.Controllers
             return result;
         }
 
-        [HttpPost(nameof(Add))]
+        [HttpGet(nameof(Add))]
+        //[HttpPost(nameof(Add))]
         [Produces("application/json")]
-        public void Add([FromBody]AddressItemViewModel item)
+        public void Add(/*[FromBody]*/AddressItemViewModel item)
         {
             this.ControllerContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
             int newIndex = 1;

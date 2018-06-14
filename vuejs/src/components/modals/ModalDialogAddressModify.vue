@@ -32,7 +32,9 @@
             add: function(event){
                 event.preventDefault();
                 var parameters = { surname : this.surname, name : this.name, middlename : this.middlename, address : this.address, phone : this.phone };
-                this.axios.post('http://localhost:55464/api/Address/Add', parameters).then(res => {
+                this.axios.get('http://localhost:55464/api/Address/Add?surname=' + parameters.surname + '&name=' + parameters.name
+                    + '&middlename=' + parameters.middlename + '&address=' + parameters.address + '&phone=' + parameters.phone
+                    /*, parameters*/).then(res => {
                     console.log(res)
                 });
             }
