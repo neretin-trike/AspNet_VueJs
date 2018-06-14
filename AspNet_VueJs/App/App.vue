@@ -1,32 +1,40 @@
 ﻿<template>
     <div id="home">
-        <header>
-          <h1>Адресная книга города Новокузнецк</h1>
-        </header>
-
-        <table class="table_content">
-            <tr>
-                <th>п/п</th>
-                <th>Фамилия</th>
-                <th>Имя</th>
-                <th>Отчество</th>
-                <th>Адрес</th>
-                <th>Телефон</th>
-            </tr>
-            <tr>
-                <td><router-link to="/Address/Info/1">1</router-link></td>
-                <td>Иванов</td>
-                <td>Иван</td>
-                <td>Иванович</td>
-                <td>Кирова, 51</td>
-                <td>8-999-123-7654</td>
-            </tr>
-        </table>
+		<p>{{address.index}}</p>
+        <p>{{address.surname}}</p>
+        <p>{{address.name}}</p>
+        <p>{{address.middlename}}</p>
+        <p>{{address.address}}</p>
+        <p>{{address.phone}}</p>
     </div>
 </template>
 
 <script>
-  export default { }
+    export default {
+        props: {
+            index: {
+                type: String,
+                default: '',
+                required: true,
+			},
+			address: {
+				type: Object,
+				default: {}
+			}
+		},
+        created() {
+            if(this.index == ''){
+                console.log('Index is undefined')
+                console.log(this.$router.currentRoute.params.index)
+                this.index = this.$router.currentRoute.params.index
+				console.log(this.index)
+				this.axios.get('/api/Address/Info/?addressIndex=' + this.index).then((response) => {
+					console.log(response.data)
+					this.address = response.data
+				})
+            }
+        }
+    }
 </script>
 
 <style lang="scss">

@@ -17,5 +17,13 @@ namespace AspNet_VueJs.Controllers
             var result = AddressesViewModel.Instance.AddressesList;
             return result;
         }
+
+        [HttpGet(nameof(Info))]
+        [Produces("application/json")]
+        public AddressItemViewModel Info(int addressIndex)
+        {
+            var result = AddressesViewModel.Instance.AddressesList.Where(a => a.Index == addressIndex).FirstOrDefault();
+            return result;
+        }
     }
 }

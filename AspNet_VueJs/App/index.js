@@ -1,6 +1,6 @@
 ﻿import Vue from 'vue'
 import VueRouter from 'vue-router'
-import App from './App.vue'
+import AddressInfo from './App.vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
@@ -10,8 +10,8 @@ Vue.use(VueAxios, axios)
 
 const routes = [
     {
-        path: '/Address/Info/:index',
-        component: App
+        path: '/api/Address/Info/:index',
+        component: AddressInfo
     }
 ]
 
