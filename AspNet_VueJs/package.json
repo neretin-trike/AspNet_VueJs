@@ -2,7 +2,7 @@
   "name": "AspNet_VueJs",
   "private": true,
   "version": "0.0.0",
-  "author": "Vadim Shvanov <shwanoff.ru>",
+  "author": "Konstantin Kastirin",
   "devDependencies": {
     "@types/webpack-env": "^1.13.5",
     "aspnet-webpack": "^2.0.3",

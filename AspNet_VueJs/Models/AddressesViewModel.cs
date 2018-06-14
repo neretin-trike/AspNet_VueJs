@@ -15,8 +15,8 @@ namespace AspNet_VueJs.Models
         private AddressesViewModel()
         {
             var addressesList = new List<AddressItemViewModel>();
-            addressesList.Add(new AddressItemViewModel(1, "Иванов", "Иван", "Иванович", "Кирова, 51", "8-999-123-7654"));
-            addressesList.Add(new AddressItemViewModel(2, "Петров", "Петр", "Петрович", "Тольяти, 11", "8-945-321-4567"));
+            addressesList.Add(new AddressItemViewModel(1, "Иван", "Иванов", "Иванович", "Кирова, 51", "8-999-123-7654"));
+            addressesList.Add(new AddressItemViewModel(2, "Петр", "Петров", "Петрович", "Тольяти, 11", "8-945-321-4567"));
             AddressesList = addressesList;
         }
     }
