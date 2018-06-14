@@ -1,28 +1,30 @@
 <template>
-    <table class="table_content">
-        <caption>Адресная книга города Новокузнецк</caption>
-        <tr>
-            <th>п/п</th>
-            <th>Фамилия</th>
-            <th>Имя</th>
-            <th>Отчество</th>
-        </tr>
-        <tr v-for="address in addresses">
-            <td>
-                <router-link to="/api/Address/Info/1">{{address.index}}</router-link>
-            </td>
-            <td>{{address.surname}}</td>
-            <td>{{address.name}}</td>
-            <td>{{address.middlename}}</td>
-        </tr>
-    </table>
+    <div>
+        <table class="table_content">
+            <caption>Адресная книга города Новокузнецк</caption>
+            <tr>
+                <th>п/п</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+            </tr>
+            <tr v-for="address in addresses">
+                <td>
+                    <router-link to="/api/Address/Info/1">{{address.index}}</router-link>
+                </td>
+                <td>{{address.surname}}</td>
+                <td>{{address.name}}</td>
+                <td>{{address.middlename}}</td>
+            </tr>
+        </table>
 
-    <!--<div class="menu_table">
-        <button type="button" class="btn" v-on:click="showModal">Добавить</button>
-        <a href="/">Home</a>
+        <div class="menu_table">
+            <button type="button" class="btn" v-on:click="showModal">Добавить</button>
+            <a href="/">Home</a>
+        </div>
     </div>
 
-    <modal v-show="isModalVisible" v-on:close="closeModal">
+    <!--<modal v-show="isModalVisible" v-on:close="closeModal">
         <modal-content slot="body"></modal-content>
     </modal>-->
 </template>
@@ -55,7 +57,6 @@
 <style scoped>
     .table_content {
         min-width: 60rem;
-        font-size: 1.4rem;
         border-collapse: collapse;
         color: #686461;
     }
