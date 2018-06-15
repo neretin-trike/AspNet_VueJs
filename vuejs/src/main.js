@@ -4,7 +4,12 @@ import router from './router/index.js'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-Vue.use(VueAxios, axios)
+var axiosInstance = axios.create({
+    baseURL: 'http://localhost:55464',
+    timeout: 3000
+});
+
+Vue.use(VueAxios, axiosInstance)
 
 new Vue({
 	el: '#app',

@@ -47,7 +47,7 @@
             }
         },
         created() {
-            this.axios.get('http://localhost:55464/api/Address/Addresses').then((response) => {
+            this.axios.get('/api/Address/Addresses').then((response) => {
                 let addressesFromServer = response.data;
                 for(var i=0; i<addressesFromServer.length; i++){
                     let addressUrl = '/Address/' + addressesFromServer[i].index;
