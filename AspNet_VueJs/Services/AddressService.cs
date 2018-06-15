@@ -10,7 +10,11 @@ namespace AspNet_VueJs.Services
     {
         public List<AddressItem> Addresses()
         {
-            var result = AddressList.Instance.AddressesList.OrderBy(address => address.Index).ToList();
+            var result = AddressList.Instance.AddressesList
+                .OrderBy(address => address.Surname)
+                .ThenBy(address => address.Name)
+                .ThenBy(address => address.Middlename)
+                .ToList();
             return result;
         }
         

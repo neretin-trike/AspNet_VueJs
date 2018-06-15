@@ -1,6 +1,5 @@
 <template>
     <div class="address_info">
-        <p>{{addressObject.index}}</p>
         <p>{{addressObject.surname}}</p>
         <p>{{addressObject.name}}</p>
         <p>{{addressObject.middlename}}</p>

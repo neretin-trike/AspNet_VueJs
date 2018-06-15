@@ -10,13 +10,13 @@
             </tr>
             <tr v-for="address in addresses">
                 <td>
-                    <router-link v-bind:to="address.addressUrl">{{address.index}}</router-link>
+                    <router-link v-bind:to="address.addressUrl">{{address.orderNumber}}</router-link>
                 </td>
                 <td>{{address.surname}}</td>
                 <td>{{address.name}}</td>
                 <td>{{address.middlename}}</td>
             </tr>
-            <tr>
+            <tr >
                 <button type="button" class="btn btn_add" v-on:click="showModal">Добавить</button>
             </tr>
         </table>
@@ -51,6 +51,7 @@
                 this.addresses = response.data;
                 for(var i=0; i<this.addresses.length; i++){
                     this.addresses[i].addressUrl = '/Address/' + this.addresses[i].index;
+                    this.addresses[i].orderNumber = i + 1;
                 }
                 console.log(this.addresses);
             })
@@ -91,6 +92,10 @@
 
     .table_content tr:nth-child(even) {
         background: #ebf3f9;
+    }
+
+    .table_content tr:last-child{
+        background: white;
     }
 
     .btn_add {
