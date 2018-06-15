@@ -1,19 +1,17 @@
 <template>
-    <div class="modal-content">
-        <form v-on:submit.prevent v-on:submit="submit">
-            <label for="surname">Фамилия</label>
-            <input type="text" name="surname" id="surname" v-model="surname"/>
-            <label for="name">Имя</label>
-            <input type="text" name="name" id="name" v-model="name"/>
-            <label for="middlename">Отчество</label>
-            <input type="text" name="middlename" id="middlename" v-model="middlename"/>
-            <label for="address">Адрес</label>
-            <input type="text" name="address" id="address" v-model="addressString"/>
-            <label for="phone">Номер телефона</label>
-            <input type="text" name="phone" id="phone" v-model="phone"/>
-            <input type="submit" class="btn" v-bind:value="buttonName"/>
-        </form>
-    </div>
+    <form class="modal_content" v-on:submit.prevent v-on:submit="submit">
+        <label class="input_label" for="surname">Фамилия</label>
+        <input class="input" type="text" name="surname" id="surname" v-model="surname"/>
+        <label class="input_label" for="name">Имя</label>
+        <input class="input"type="text" name="name" id="name" v-model="name"/>
+        <label class="input_label" for="middlename">Отчество</label>
+        <input class="input"type="text" name="middlename" id="middlename" v-model="middlename"/>
+        <label class="input_label" for="address">Адрес</label>
+        <input class="input"type="text" name="address" id="address" v-model="addressString"/>
+        <label class="input_label" for="phone">Номер телефона</label>
+        <input class="input"type="text" name="phone" id="phone" v-model="phone"/>
+        <input type="submit" class="btn btn_submit" v-bind:value="buttonName"/>
+    </form>
 </template>
 
 <script>
@@ -67,5 +65,20 @@
 </script>
 
 <style>
+    .modal_content{
+        display: flex;
+        flex-direction: column;
+    }
 
+    .input_label{
+        margin-top: 1rem;
+    }
+
+    .input{
+        padding: 0.4rem;
+    }
+
+    .btn_submit{
+        margin: 1.4rem 0;
+    }
 </style>
