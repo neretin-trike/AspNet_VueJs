@@ -16,11 +16,11 @@
                 <td>{{address.name}}</td>
                 <td>{{address.middlename}}</td>
             </tr>
-            <tr >
+            <tr>
                 <button type="button" class="btn btn_add" v-on:click="showModal">Добавить</button>
             </tr>
         </table>
-        <modal-address-add v-bind:show="isModalVisible" v-on:close="closeModal"></modal-address-add>
+        <modal-address-add v-bind:show="isModalVisible" v-bind:addresses="addresses" v-on:close="closeModal"></modal-address-add>
     </div>
 </template>
 
@@ -32,7 +32,8 @@
         data: function () {
             return {
                 addresses: [],
-                isModalVisible: false
+                isModalVisible: false,
+                lastOrderNumber: 0
             }
         },
         components:{

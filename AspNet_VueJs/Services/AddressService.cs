@@ -24,7 +24,7 @@ namespace AspNet_VueJs.Services
             return result;
         }
         
-        public void Add(AddressItem item)
+        public int Add(AddressItem item)
         {
             int newIndex = 1;
             while (true)
@@ -40,7 +40,8 @@ namespace AspNet_VueJs.Services
             }
 
             item.Index = newIndex;
-            Models.AddressList.Instance.AddressesList.Add(item);
+            AddressList.Instance.AddressesList.Add(item);
+            return newIndex;
         }
         
         public void Remove(int index)

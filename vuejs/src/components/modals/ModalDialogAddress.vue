@@ -26,6 +26,9 @@
             addressObject: {
                 type: Object
             },
+            addresses: {
+                type: Array
+            },
             buttonName: {
                 type: String,
                 default: 'Отправить'
@@ -42,13 +45,44 @@
             }
         },
         methods:{
-            submit: function(event){
-                var parameters = { index: this.index, surname : this.surname, name : this.name, middlename : this.middlename, addressString : this.addressString, phone : this.phone };
-                this.axios.get(this.urlBase + '?index=' + parameters.index + '&surname=' + parameters.surname + '&name=' + parameters.name
-                    + '&middlename=' + parameters.middlename + '&address=' + parameters.addressString + '&phone=' + parameters.phone
-                    /*, parameters*/).then(res => {
-                    this.$parent.close();
-                })
+            submit: function(){
+                //var parameters = { index: this.index, surname : this.surname, name : this.name, middlename : this.middlename, addressString : this.addressString, phone : this.phone };
+
+                this.axios.get(this.urlBase + '?index=' + this.index + '&surname=' + this.surname + '&name=' + this.name
+                    + '&middlename=' + this.middlename + '&address=' + this.addressString + '&phone=' + this.phone
+                    //, parameters
+                )
+                    .then(res => {
+                        this.index = res.data;
+                        console.log(res.data);
+                        console.log(this.index);
+
+                        if(this.addressObject != undefined) {
+                            this.addressObject.index = this.index;
+                            this.addressObject.surname = this.surname;
+                            this.addressObject.name = this.name;
+                            this.addressObject.middlename = this.middlename;
+                            this.addressObject.address = this.addressString;
+                            this.addressObject.phone = this.phone;
+                        }
+
+                        if(this.addresses != undefined) {
+                            console.log(this.index);
+                            var addressObject = {
+                                index : this.index,
+                                surname : this.surname,
+                                name : this.name,
+                                middlename : this.middlename,
+                                address : this.addressString,
+                                phone : this.phone,
+                                orderNumber : this.addresses.length+1,
+                                addressUrl : '/Address/' + this.index
+                            }
+                            this.addresses[this.addresses.length] = addressObject;
+                        }
+
+                        this.$parent.close();
+                    })
             },
         },
         created(){

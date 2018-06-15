@@ -34,10 +34,12 @@ namespace AspNet_VueJs.Controllers
         [HttpGet(nameof(Add))]
         //[HttpPost(nameof(Add))]
         [Produces("application/json")]
-        public void Add(/*[FromBody]*/AddressItem item)
+        public int Add(/*[FromBody]*/AddressItem item)
         {
             this.ControllerContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", AccessControlForUrlBase);
-            new AddressService().Add(item);
+            var result = new AddressService().Add(item);
+            return result;
+
         }
 
         [HttpGet(nameof(Remove))]
