@@ -1,16 +1,16 @@
 <template>
     <div class="address_info">
-        <p>{{addressValue.index}}</p>
-        <p>{{addressValue.surname}}</p>
-        <p>{{addressValue.name}}</p>
-        <p>{{addressValue.middlename}}</p>
-        <p>{{addressValue.address}}</p>
-        <p>{{addressValue.phone}}</p>
+        <p>{{addressObject.index}}</p>
+        <p>{{addressObject.surname}}</p>
+        <p>{{addressObject.name}}</p>
+        <p>{{addressObject.middlename}}</p>
+        <p>{{addressObject.address}}</p>
+        <p>{{addressObject.phone}}</p>
         <button v-on:click="showModal">Изменить</button>
         <button v-on:click="remove">Удалить</button>
         <router-link class="rout_link_btn" to="/">Назад</router-link>
 
-        <modal-address-modify v-bind:addressObject="addressValue" v-bind:show="isModalVisible" v-on:close="closeModal"></modal-address-modify>
+        <modal-address-modify v-bind:addressObject="addressObject" v-bind:show="isModalVisible" v-on:close="closeModal"></modal-address-modify>
     </div>
 </template>
 
@@ -22,12 +22,14 @@
         props: {
             index: {
                 type: Number
-            }
+            },
+            addressObject: {
+                type: Object
+            },
         },
         data: function() {
             return {
                 indexValue: -1,
-                addressValue: {},
                 isModalVisible: false
             }
         },
@@ -42,7 +44,7 @@
                 this.isModalVisible = false;
             },
             remove: function(){
-                this.axios.get('http://localhost:55464/api/Address/Remove?index=' + this.addressValue.index)
+                this.axios.get('http://localhost:55464/api/Address/Remove?index=' + this.addressObject.index)
                     .then(response => {
                         this.$router.push('/');
                     })
@@ -59,7 +61,7 @@
             }
 
             this.axios.get('http://localhost:55464/api/Address/Info/?addressIndex=' + this.indexValue).then((response) => {
-                this.addressValue = response.data;
+                this.addressObject = response.data;
             });
         }
     }
