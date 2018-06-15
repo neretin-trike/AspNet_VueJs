@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNet_VueJs.Models;
+using AspNet_VueJs.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNet_VueJs.Controllers
@@ -12,42 +13,29 @@ namespace AspNet_VueJs.Controllers
     {
         [HttpGet(nameof(Addresses))]
         [Produces("application/json")]
-        public List<AddressItemViewModel> Addresses()
+        public List<AddressItem> Addresses()
         {
             this.ControllerContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
-            var result = AddressesViewModel.Instance.AddressesList;
+            var result = new AddressService().Addresses();
             return result;
         }
 
         [HttpGet(nameof(Info))]
         [Produces("application/json")]
-        public AddressItemViewModel Info(int addressIndex)
+        public AddressItem Info(int addressIndex)
         {
             this.ControllerContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
-            var result = AddressesViewModel.Instance.AddressesList.Where(a => a.Index == addressIndex).FirstOrDefault();
+            var result = new AddressService().Address(addressIndex);
             return result;
         }
 
         [HttpGet(nameof(Add))]
         //[HttpPost(nameof(Add))]
         [Produces("application/json")]
-        public void Add(/*[FromBody]*/AddressItemViewModel item)
+        public void Add(/*[FromBody]*/AddressItem item)
         {
             this.ControllerContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
-            int newIndex = 1;
-            while (true) {
-                var isIndexExists = AddressesViewModel.Instance.AddressesList.Any(address => address.Index == newIndex);
-
-                if (!isIndexExists)
-                {
-                    break;
-                }
-
-                newIndex++;
-            }
-
-            item.Index = newIndex;
-            AddressesViewModel.Instance.AddressesList.Add(item);
+            new AddressService().Add(item);
         }
 
         [HttpGet(nameof(Remove))]
@@ -55,10 +43,15 @@ namespace AspNet_VueJs.Controllers
         public void Remove(int index)
         {
             this.ControllerContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
-            AddressesViewModel.Instance.AddressesList
-                .Where(address => address.Index == index)
-                .ToList()
-                .ForEach(address => AddressesViewModel.Instance.AddressesList.Remove(address));
+            new AddressService().Remove(index);
+        }
+
+        [HttpGet(nameof(Change))]
+        [Produces("application/json")]
+        public void Change(AddressItem item)
+        {
+            this.ControllerContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            new AddressService().Change(item);
         }
     }
 }

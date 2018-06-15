@@ -29,6 +29,7 @@
         },
         data: function() {
             return {
+                index: -1,
                 surname: '',
                 name: '',
                 middlename: '',
@@ -38,8 +39,8 @@
         },
         methods:{
             submit: function(event){
-                var parameters = { surname : this.surname, name : this.name, middlename : this.middlename, addressString : this.addressString, phone : this.phone };
-                this.axios.get(this.urlBase + '?surname=' + parameters.surname + '&name=' + parameters.name
+                var parameters = { index: this.index, surname : this.surname, name : this.name, middlename : this.middlename, addressString : this.addressString, phone : this.phone };
+                this.axios.get(this.urlBase + '?index=' + parameters.index + '&surname=' + parameters.surname + '&name=' + parameters.name
                     + '&middlename=' + parameters.middlename + '&address=' + parameters.addressString + '&phone=' + parameters.phone
                     /*, parameters*/).then(res => {
                     this.$parent.close();
@@ -48,6 +49,7 @@
         },
         created(){
             if(this.addressObject != undefined){
+                this.index = this.addressObject.index;
                 this.surname = this.addressObject.surname;
                 this.name = this.addressObject.name;
                 this.middlename = this.addressObject.middlename;

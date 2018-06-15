@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AspNet_VueJs.Models
 {
-    public class AddressItemViewModel
+    public class AddressItem
     {
         public int Index { get; set; }
         public string Name { get; set; }
@@ -14,11 +14,11 @@ namespace AspNet_VueJs.Models
         public string Address { get; set; }
         public string Phone { get; set; }
 
-        public AddressItemViewModel()
+        public AddressItem()
         {
         }
 
-        public AddressItemViewModel(int index, string name, string surname, string middlename, string address, string phone)
+        public AddressItem(int index, string name, string surname, string middlename, string address, string phone)
         {
             Index = index;
             Name = name;
