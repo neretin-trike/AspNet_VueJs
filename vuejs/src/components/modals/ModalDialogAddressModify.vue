@@ -20,7 +20,7 @@
     export default {
         name: 'modal-address-modify',
         props: {
-            address: {
+            addressObject: {
                 type: Object,
                 default: () => {}
             }
