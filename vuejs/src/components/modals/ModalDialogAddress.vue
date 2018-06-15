@@ -11,7 +11,7 @@
             <input type="text" name="address" id="address" v-model="addressString"/>
             <label for="phone">Номер телефона</label>
             <input type="text" name="phone" id="phone" v-model="phone"/>
-            <input type="submit" value="Добавить"/>
+            <input type="submit" v-bind:value="buttonName"/>
         </form>
     </div>
 </template>
@@ -25,7 +25,13 @@
                 default: '',
                 required: true
             },
-            addressObject: Object
+            addressObject: {
+                type: Object
+            },
+            buttonName: {
+                type: String,
+                default: 'Отправить'
+            }
         },
         data: function() {
             return {
