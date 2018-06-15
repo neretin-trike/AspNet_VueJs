@@ -1,16 +1,16 @@
 <template>
     <div class="address_info">
-        <p>{{addressObject.index}}</p>
-        <p>{{addressObject.surname}}</p>
-        <p>{{addressObject.name}}</p>
-        <p>{{addressObject.middlename}}</p>
-        <p>{{addressObject.address}}</p>
-        <p>{{addressObject.phone}}</p>
+        <p>{{addressValue.index}}</p>
+        <p>{{addressValue.surname}}</p>
+        <p>{{addressValue.name}}</p>
+        <p>{{addressValue.middlename}}</p>
+        <p>{{addressValue.address}}</p>
+        <p>{{addressValue.phone}}</p>
         <button v-on:click="showModal">Изменить</button>
         <button v-on:click="remove">Удалить</button>
         <router-link class="rout_link_btn" to="/">Назад</router-link>
 
-        <modal-address-modify v-bind:addressObject="addressObject" v-bind:show="isModalVisible" v-on:close="closeModal"></modal-address-modify>
+        <modal-address-modify v-bind:addressObject="addressValue" v-bind:show="isModalVisible" v-on:close="closeModal"></modal-address-modify>
     </div>
 </template>
 
@@ -21,17 +21,13 @@
         name: 'address-item',
         props: {
             index: {
-                type: String,
-                default: '',
-                required: true
-            },
-            addressObject: {
-                type: Object,
-                default: () => {}
+                type: Number
             }
         },
         data: function() {
             return {
+                indexValue: -1,
+                addressValue: {},
                 isModalVisible: false
             }
         },
@@ -46,7 +42,7 @@
                 this.isModalVisible = false;
             },
             remove: function(){
-                this.axios.get('http://localhost:55464/api/Address/Remove?index=' + this.addressObject.index)
+                this.axios.get('http://localhost:55464/api/Address/Remove?index=' + this.addressValue.index)
                     .then(response => {
                         this.$router.push('/');
                     })
@@ -56,13 +52,15 @@
             }
         },
         created() {
-            if(this.index == ''){
-                this.index = this.$router.currentRoute.params.index
+            if(this.index == undefined) {
+                this.indexValue = this.$router.currentRoute.params.index;
+            } else {
+                this.indexValue = this.index;
             }
 
-            this.axios.get('http://localhost:55464/api/Address/Info/?addressIndex=' + this.index).then((response) => {
-                this.addressObject = response.data
-            })
+            this.axios.get('http://localhost:55464/api/Address/Info/?addressIndex=' + this.indexValue).then((response) => {
+                this.addressValue = response.data;
+            });
         }
     }
 </script>
