@@ -1,5 +1,12 @@
 <template>
     <form class="modal_content" v-on:submit.prevent v-on:submit="submit">
+        <div class="error" v-if="errors.length">
+            <b>Пожалуйста исправьте указанные ошибки:</b>
+            <ul>
+                <li v-for="error in errors">{{error}}</li>
+            </ul>
+        </div>
+
         <label class="input_label" for="surname">Фамилия</label>
         <input class="input" type="text" name="surname" id="surname" v-model="surname"/>
         <label class="input_label" for="name">Имя</label>
@@ -37,15 +44,36 @@
         data: function() {
             return {
                 index: -1,
-                surname: '',
-                name: '',
-                middlename: '',
-                addressString: '',
-                phone: ''
+                surname: null,
+                name: null,
+                middlename: null,
+                addressString: null,
+                phone: null,
+                errors: []
             }
         },
         methods:{
             submit: function(){
+                if(!this.surname){
+                    this.errors.push("Укажите фамилию");
+                }
+                if(!this.name){
+                    this.errors.push("Укажите имя");
+                }
+                if(!this.middlename){
+                    this.errors.push("Укажите отчество");
+                }
+                if(!this.address){
+                    this.errors.push("Укажите адрес");
+                }
+                if(!this.phone){
+                    this.errors.push("Укажите номер телефона");
+                }
+
+                if(this.errors.length){
+                    return;
+                }
+
                 //var parameters = { index: this.index, surname : this.surname, name : this.name, middlename : this.middlename, addressString : this.addressString, phone : this.phone };
 
                 this.axios.get(this.urlBase + '?index=' + this.index + '&surname=' + this.surname + '&name=' + this.name
@@ -102,6 +130,7 @@
     .modal_content{
         display: flex;
         flex-direction: column;
+        width: 30rem;
     }
 
     .input_label{
@@ -114,5 +143,10 @@
 
     .btn_submit{
         margin: 1.4rem 0;
+    }
+
+    .error{
+        padding: 1rem;
+        background: #FF9999;
     }
 </style>
