@@ -8,7 +8,7 @@
             <label for="middlename">Отчество</label>
             <input type="text" name="middlename" id="middlename" v-model="middlename"/>
             <label for="address">Адрес</label>
-            <input type="text" name="address" id="address" v-model="address"/>
+            <input type="text" name="address" id="address" v-model="addressString"/>
             <label for="phone">Номер телефона</label>
             <input type="text" name="phone" id="phone" v-model="phone"/>
             <input type="submit" value="Добавить"/>
@@ -19,21 +19,27 @@
 <script>
     export default {
         name: 'modal-address-modify',
+        props: {
+            address: {
+                type: Object,
+                default: () => {}
+            }
+        },
         data: function() {
             return {
                 surname: '',
                 name: '',
                 middlename: '',
-                address: '',
+                addressString: '',
                 phone: ''
             }
         },
         methods:{
             add: function(event){
                 event.preventDefault();
-                var parameters = { surname : this.surname, name : this.name, middlename : this.middlename, address : this.address, phone : this.phone };
+                var parameters = { surname : this.surname, name : this.name, middlename : this.middlename, addressString : this.addressString, phone : this.phone };
                 this.axios.get('http://localhost:55464/api/Address/Add?surname=' + parameters.surname + '&name=' + parameters.name
-                    + '&middlename=' + parameters.middlename + '&address=' + parameters.address + '&phone=' + parameters.phone
+                    + '&middlename=' + parameters.middlename + '&address=' + parameters.addressString + '&phone=' + parameters.phone
                     /*, parameters*/).then(res => {
                     this.$parent.close();
                 });

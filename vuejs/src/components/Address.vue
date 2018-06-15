@@ -6,13 +6,20 @@
         <p>{{address.middlename}}</p>
         <p>{{address.address}}</p>
         <p>{{address.phone}}</p>
-        <button>Изменить</button>
+        <button v-on:click="showModal">Изменить</button>
         <button v-on:click="remove">Удалить</button>
         <router-link class="rout_link_btn" to="/">Назад</router-link>
+
+        <modal-dialog v-show="isModalVisible" v-on:close="closeModal">
+            <modal-address-modify v-on:address="address" slot="body"></modal-address-modify>
+        </modal-dialog>
     </div>
 </template>
 
 <script>
+    import modalDialog from '../components/modals/ModalDialogBase.vue'
+    import modalAddressModify from '../components/modals/ModalDialogAddressModify.vue'
+
     export default {
         name: 'address',
         props: {
@@ -23,10 +30,25 @@
             },
             address: {
                 type: Object,
-                default: {}
+                default: () => {}
             }
         },
+        data: function() {
+            return {
+                isModalVisible: false
+            }
+        },
+        components:{
+            modalDialog,
+            modalAddressModify
+        },
         methods: {
+            showModal(){
+                this.isModalVisible = true;
+            },
+            closeModal(){
+                this.isModalVisible = false;
+            },
             remove: function(){
                 this.axios.get('http://localhost:55464/api/Address/Remove?index=' + this.address.index)
                     .then(response => {
