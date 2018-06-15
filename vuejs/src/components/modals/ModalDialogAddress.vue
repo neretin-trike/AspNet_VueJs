@@ -1,6 +1,6 @@
 <template>
     <div class="modal-content">
-        <form v-on:submit.prevent v-on:submit="add">
+        <form v-on:submit.prevent v-on:submit="submit">
             <label for="surname">Фамилия</label>
             <input type="text" name="surname" id="surname" v-model="surname"/>
             <label for="name">Имя</label>
@@ -20,6 +20,11 @@
     export default {
         name: 'modal-address',
         props: {
+            urlBase: {
+                type: String,
+                default: '',
+                required: true
+            },
             addressObject: Object
         },
         data: function() {
@@ -32,15 +37,14 @@
             }
         },
         methods:{
-            add: function(event){
-                event.preventDefault();
+            submit: function(event){
                 var parameters = { surname : this.surname, name : this.name, middlename : this.middlename, addressString : this.addressString, phone : this.phone };
-                this.axios.get('http://localhost:55464/api/Address/Add?surname=' + parameters.surname + '&name=' + parameters.name
+                this.axios.get(this.urlBase + '?surname=' + parameters.surname + '&name=' + parameters.name
                     + '&middlename=' + parameters.middlename + '&address=' + parameters.addressString + '&phone=' + parameters.phone
                     /*, parameters*/).then(res => {
                     this.$parent.close();
-                });
-            }
+                })
+            },
         },
         created(){
             if(this.addressObject != undefined){
