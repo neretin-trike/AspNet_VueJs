@@ -7,7 +7,7 @@
         <p>{{address.address}}</p>
         <p>{{address.phone}}</p>
         <button>Изменить</button>
-        <button>Удалить</button>
+        <button v-on:click="remove">Удалить</button>
         <router-link class="rout_link_btn" to="/">Назад</router-link>
     </div>
 </template>
@@ -19,11 +19,22 @@
             index: {
                 type: String,
                 default: '',
-                required: true,
+                required: true
             },
             address: {
                 type: Object,
                 default: {}
+            }
+        },
+        methods: {
+            remove: function(){
+                this.axios.get('http://localhost:55464/api/Address/Remove?index=' + this.address.index)
+                    .then(response => {
+                        this.$router.push('/');
+                    })
+                    .catch(ex => {
+                        this.errors.push(ex)
+                    })
             }
         },
         created() {

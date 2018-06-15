@@ -49,5 +49,16 @@ namespace AspNet_VueJs.Controllers
             item.Index = newIndex;
             AddressesViewModel.Instance.AddressesList.Add(item);
         }
+
+        [HttpGet(nameof(Remove))]
+        [Produces("application/json")]
+        public void Remove(int index)
+        {
+            this.ControllerContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            AddressesViewModel.Instance.AddressesList
+                .Where(address => address.Index == index)
+                .ToList()
+                .ForEach(address => AddressesViewModel.Instance.AddressesList.Remove(address));
+        }
     }
 }
