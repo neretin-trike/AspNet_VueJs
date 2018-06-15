@@ -16,13 +16,10 @@
                 <td>{{address.name}}</td>
                 <td>{{address.middlename}}</td>
             </tr>
+            <tr>
+                <button type="button" class="btn btn_add" v-on:click="showModal">Добавить</button>
+            </tr>
         </table>
-
-        <div class="menu_table">
-            <button type="button" class="btn" v-on:click="showModal">Добавить</button>
-            <a href="/">Home</a>
-        </div>
-
         <modal-address-add v-bind:show="isModalVisible" v-on:close="closeModal"></modal-address-add>
     </div>
 </template>
@@ -66,6 +63,7 @@
         min-width: 60rem;
         border-collapse: collapse;
         color: #686461;
+        margin: 2rem auto;
     }
 
     .table_content caption {
@@ -95,7 +93,7 @@
         background: #ebf3f9;
     }
 
-    .menu_table {
+    .btn_add {
         margin: 1rem 0;
     }
 </style>
