@@ -1,6 +1,6 @@
 <template>
     <modal-dialog v-show="show" v-on:close="close">
-        <modal-address urlBase="http://localhost:55464/api/Address/Change" v-bind:addressObject="addressObject" buttonName="Изменить" slot="body"></modal-address>
+        <modal-address urlBase="/api/Address/Change" v-bind:addressObject="addressObject" buttonName="Изменить" slot="body"></modal-address>
     </modal-dialog>
 </template>
 

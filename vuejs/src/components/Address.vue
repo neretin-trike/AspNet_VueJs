@@ -43,7 +43,7 @@
                 this.isModalVisible = false;
             },
             remove: function(){
-                this.axios.get('http://localhost:55464/api/Address/Remove?index=' + this.addressObject.index)
+                this.axios.get('/api/Address/Remove?index=' + this.addressObject.index)
                     .then(response => {
                         this.$router.push('/');
                     })
@@ -59,7 +59,7 @@
                 this.indexValue = this.index;
             }
 
-            this.axios.get('http://localhost:55464/api/Address/Info/?addressIndex=' + this.indexValue).then((response) => {
+            this.axios.get('/api/Address/Info/?addressIndex=' + this.indexValue).then((response) => {
                 this.addressObject = response.data;
             });
         }
