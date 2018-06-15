@@ -20,10 +20,7 @@
     export default {
         name: 'modal-address-modify',
         props: {
-            addressObject: {
-                type: Object,
-                default: () => {}
-            }
+            addressObject: Object
         },
         data: function() {
             return {
@@ -43,6 +40,16 @@
                     /*, parameters*/).then(res => {
                     this.$parent.close();
                 });
+            }
+        },
+        created(){
+            if(this.addressObject != undefined){
+                console.log(this.addressObject);
+                this.surname = this.addressObject.surname;
+                this.name = this.addressObject.name;
+                this.middlename = this.addressObject.middlename;
+                this.addressString = this.addressObject.address;
+                this.phone = this.addressObject.phone;
             }
         }
     }

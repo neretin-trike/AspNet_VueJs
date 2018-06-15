@@ -23,15 +23,12 @@
             <a href="/">Home</a>
         </div>
 
-        <modal-dialog v-show="isModalVisible" v-on:close="closeModal">
-            <modal-address-modify slot="body"></modal-address-modify>
-        </modal-dialog>
+        <modal-address-add v-bind:show="isModalVisible" v-on:close="closeModal"></modal-address-add>
     </div>
 </template>
 
 <script>
-    import modalDialog from '../components/modals/ModalDialogBase.vue'
-    import modalAddressModify from '../components/modals/ModalDialogAddressModify.vue'
+    import modalAddressAdd from './modals/ModalDialogAddressAdd.vue'
 
     export default {
         name: "Addresses",
@@ -42,8 +39,7 @@
             }
         },
         components:{
-            modalDialog,
-            modalAddressModify
+            modalAddressAdd
         },
         methods: {
             showModal(){

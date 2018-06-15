@@ -11,7 +11,7 @@
         <router-link class="rout_link_btn" to="/">Назад</router-link>
 
         <modal-dialog v-show="isModalVisible" v-on:close="closeModal">
-            <modal-address-modify v-on:addressObject="addressObject" slot="body"></modal-address-modify>
+            <modal-address-modify v-bind:addressObject="addressObject" slot="body"></modal-address-modify>
         </modal-dialog>
     </div>
 </template>
