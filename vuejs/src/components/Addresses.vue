@@ -55,7 +55,6 @@
         },
         created() {
             this.axios.get('http://localhost:55464/api/Address/Addresses').then((response) => {
-                console.log(response.data)
                 this.addresses = response.data
             })
         }

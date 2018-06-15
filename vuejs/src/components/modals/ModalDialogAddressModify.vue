@@ -35,7 +35,7 @@
                 this.axios.get('http://localhost:55464/api/Address/Add?surname=' + parameters.surname + '&name=' + parameters.name
                     + '&middlename=' + parameters.middlename + '&address=' + parameters.address + '&phone=' + parameters.phone
                     /*, parameters*/).then(res => {
-                    console.log(res)
+                    this.$parent.close();
                 });
             }
         }
