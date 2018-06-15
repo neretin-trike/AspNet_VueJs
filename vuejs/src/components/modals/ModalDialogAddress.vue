@@ -11,7 +11,7 @@
             <input type="text" name="address" id="address" v-model="addressString"/>
             <label for="phone">Номер телефона</label>
             <input type="text" name="phone" id="phone" v-model="phone"/>
-            <input type="submit" v-bind:value="buttonName"/>
+            <input type="submit" class="btn" v-bind:value="buttonName"/>
         </form>
     </div>
 </template>
