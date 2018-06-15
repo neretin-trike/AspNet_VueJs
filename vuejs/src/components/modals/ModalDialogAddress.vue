@@ -54,23 +54,7 @@
         },
         methods:{
             submit: function(){
-                if(!this.surname){
-                    this.errors.push("Укажите фамилию");
-                }
-                if(!this.name){
-                    this.errors.push("Укажите имя");
-                }
-                if(!this.middlename){
-                    this.errors.push("Укажите отчество");
-                }
-                if(!this.address){
-                    this.errors.push("Укажите адрес");
-                }
-                if(!this.phone){
-                    this.errors.push("Укажите номер телефона");
-                }
-
-                if(this.errors.length){
+                if(!this.checkData()){
                     return;
                 }
 
@@ -112,6 +96,29 @@
                         this.$parent.close();
                     })
             },
+            checkData: function(){
+                if(!this.surname){
+                    this.errors.push("Укажите фамилию");
+                }
+                if(!this.name){
+                    this.errors.push("Укажите имя");
+                }
+                if(!this.middlename){
+                    this.errors.push("Укажите отчество");
+                }
+                if(!this.address){
+                    this.errors.push("Укажите адрес");
+                }
+                if(!this.phone){
+                    this.errors.push("Укажите номер телефона");
+                }
+
+                if(this.errors.length){
+                    return false;
+                }else{
+                    return true;
+                }
+            }
         },
         created(){
             if(this.addressObject != undefined){
