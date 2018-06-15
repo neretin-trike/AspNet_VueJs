@@ -13,7 +13,7 @@ let router = new VueRouter({
             component: addresses
         },
         {
-            path: '/api/Address/Info/:index',
+            path: '/Address/:index',
             component: address
         }
     ]

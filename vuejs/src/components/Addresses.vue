@@ -10,7 +10,7 @@
             </tr>
             <tr v-for="address in addresses">
                 <td>
-                    <router-link to="/api/Address/Info/1">{{address.index}}</router-link>
+                    <router-link to="/Address/1">{{address.index}}</router-link>
                 </td>
                 <td>{{address.surname}}</td>
                 <td>{{address.name}}</td>
