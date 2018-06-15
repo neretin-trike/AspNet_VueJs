@@ -69,7 +69,7 @@
 
 <style scoped>
     .address_info {
-        background: #eeeee5;
+        background: #ebf3f9;
         border: 1px dashed #abab9a;
         padding: 1rem;
         margin: 2rem 1rem;
