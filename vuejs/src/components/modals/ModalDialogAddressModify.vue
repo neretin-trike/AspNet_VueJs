@@ -1,60 +1,36 @@
 <template>
-    <div class="modal-content">
-        <form v-on:submit.prevent v-on:submit="add">
-            <label for="surname">Фамилия</label>
-            <input type="text" name="surname" id="surname" v-model="surname"/>
-            <label for="name">Имя</label>
-            <input type="text" name="name" id="name" v-model="name"/>
-            <label for="middlename">Отчество</label>
-            <input type="text" name="middlename" id="middlename" v-model="middlename"/>
-            <label for="address">Адрес</label>
-            <input type="text" name="address" id="address" v-model="addressString"/>
-            <label for="phone">Номер телефона</label>
-            <input type="text" name="phone" id="phone" v-model="phone"/>
-            <input type="submit" value="Добавить"/>
-        </form>
-    </div>
+    <modal-dialog v-show="show" v-on:close="close">
+        <modal-address v-bind:addressObject="addressObject" slot="body"></modal-address>
+    </modal-dialog>
 </template>
 
 <script>
+    import modalDialog from './ModalDialogBase.vue'
+    import modalAddress from './ModalDialogAddress.vue'
+
     export default {
-        name: 'modal-address-modify',
+        name: "modal-address-modify",
         props: {
-            addressObject: Object
-        },
-        data: function() {
-            return {
-                surname: '',
-                name: '',
-                middlename: '',
-                addressString: '',
-                phone: ''
+            show: {
+                type: Boolean,
+                default: false
+            },
+            addressObject: {
+                type: Object
             }
         },
-        methods:{
-            add: function(event){
-                event.preventDefault();
-                var parameters = { surname : this.surname, name : this.name, middlename : this.middlename, addressString : this.addressString, phone : this.phone };
-                this.axios.get('http://localhost:55464/api/Address/Add?surname=' + parameters.surname + '&name=' + parameters.name
-                    + '&middlename=' + parameters.middlename + '&address=' + parameters.addressString + '&phone=' + parameters.phone
-                    /*, parameters*/).then(res => {
-                    this.$parent.close();
-                });
-            }
+        components:{
+            modalDialog,
+            modalAddress
         },
-        created(){
-            if(this.addressObject != undefined){
-                console.log(this.addressObject);
-                this.surname = this.addressObject.surname;
-                this.name = this.addressObject.name;
-                this.middlename = this.addressObject.middlename;
-                this.addressString = this.addressObject.address;
-                this.phone = this.addressObject.phone;
+        methods: {
+            close(){
+                this.$emit('close')
             }
         }
     }
 </script>
 
-<style>
+<style scoped>
 
 </style>

@@ -10,15 +10,12 @@
         <button v-on:click="remove">Удалить</button>
         <router-link class="rout_link_btn" to="/">Назад</router-link>
 
-        <modal-dialog v-show="isModalVisible" v-on:close="closeModal">
-            <modal-address-modify v-bind:addressObject="addressObject" slot="body"></modal-address-modify>
-        </modal-dialog>
+        <modal-address-modify v-bind:addressObject="addressObject" v-bind:show="isModalVisible" v-on:close="closeModal"></modal-address-modify>
     </div>
 </template>
 
 <script>
-    import modalDialog from '../components/modals/ModalDialogBase.vue'
-    import modalAddressModify from '../components/modals/ModalDialogAddressModify.vue'
+    import modalAddressModify from './modals/ModalDialogAddressModify.vue'
 
     export default {
         name: 'address-item',
@@ -39,7 +36,6 @@
             }
         },
         components:{
-            modalDialog,
             modalAddressModify
         },
         methods: {

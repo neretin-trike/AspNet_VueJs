@@ -1,12 +1,12 @@
 <template>
     <modal-dialog v-show="show" v-on:close="close">
-        <modal-address-modify slot="body"></modal-address-modify>
+        <modal-address slot="body"></modal-address>
     </modal-dialog>
 </template>
 
 <script>
     import modalDialog from './ModalDialogBase.vue'
-    import modalAddressModify from './ModalDialogAddressModify.vue'
+    import modalAddress from './ModalDialogAddress.vue'
 
     export default {
         name: "modal-address-add",
@@ -18,7 +18,7 @@
         },
         components:{
             modalDialog,
-            modalAddressModify
+            modalAddress
         },
         methods: {
             close(){
