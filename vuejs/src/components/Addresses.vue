@@ -10,7 +10,7 @@
             </tr>
             <tr v-for="address in addresses">
                 <td>
-                    <router-link to="/Address/1">{{address.index}}</router-link>
+                    <router-link v-bind:to="address.addressUrl">{{address.index}}</router-link>
                 </td>
                 <td>{{address.surname}}</td>
                 <td>{{address.name}}</td>
@@ -51,7 +51,11 @@
         },
         created() {
             this.axios.get('http://localhost:55464/api/Address/Addresses').then((response) => {
-                this.addresses = response.data
+                this.addresses = response.data;
+                for(var i=0; i<this.addresses.length; i++){
+                    this.addresses[i].addressUrl = '/Address/' + this.addresses[i].index;
+                }
+                console.log(this.addresses);
             })
         }
     }
