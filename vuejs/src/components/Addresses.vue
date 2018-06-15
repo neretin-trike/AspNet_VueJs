@@ -20,7 +20,7 @@
                 <button type="button" class="btn btn_add" v-on:click="showModal">Добавить</button>
             </tr>
         </table>
-        <modal-address-add v-bind:show="isModalVisible" v-bind:addresses="addresses" v-on:close="closeModal"></modal-address-add>
+        <modal-address-add v-bind:show="isModalVisible" v-on:callback="addAddress" v-on:close="closeModal"></modal-address-add>
     </div>
 </template>
 
@@ -44,6 +44,10 @@
             },
             closeModal(){
                 this.isModalVisible = false;
+            },
+            addAddress: function(newAddress){
+                newAddress.orderNumber = this.addresses.length+1
+                this.addresses.push(newAddress)
             }
         },
         created() {

@@ -1,6 +1,6 @@
 <template>
     <modal-dialog v-show="show" v-on:close="close">
-        <modal-address urlBase="/api/Address/Add" v-bind:addresses="addresses" buttonName="Добавить" slot="body"></modal-address>
+        <modal-address urlBase="/api/Address/Add" v-on:callback="callback" buttonName="Добавить" slot="body"></modal-address>
     </modal-dialog>
 </template>
 
@@ -14,9 +14,6 @@
             show: {
                 type: Boolean,
                 default: false
-            },
-            addresses: {
-                type: Array
             }
         },
         components:{
@@ -26,6 +23,11 @@
         methods: {
             close(){
                 this.$emit('close')
+            },
+            callback: function(newAddress){
+                console.log('AddressAdd')
+                console.log(newAddress)
+                this.$emit('callback', newAddress)
             }
         }
     }

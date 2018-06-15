@@ -10,13 +10,13 @@
         <label class="input_label" for="surname">Фамилия</label>
         <input class="input" type="text" name="surname" id="surname" v-model="surname"/>
         <label class="input_label" for="name">Имя</label>
-        <input class="input"type="text" name="name" id="name" v-model="name"/>
+        <input class="input" type="text" name="name" id="name" v-model="name"/>
         <label class="input_label" for="middlename">Отчество</label>
-        <input class="input"type="text" name="middlename" id="middlename" v-model="middlename"/>
+        <input class="input" type="text" name="middlename" id="middlename" v-model="middlename"/>
         <label class="input_label" for="address">Адрес</label>
-        <input class="input"type="text" name="address" id="address" v-model="addressString"/>
+        <input class="input" type="text" name="address" id="address" v-model="addressString"/>
         <label class="input_label" for="phone">Номер телефона</label>
-        <input class="input"type="text" name="phone" id="phone" v-model="phone"/>
+        <input class="input" type="text" name="phone" id="phone" v-model="phone"/>
         <input type="submit" class="btn btn_submit" v-bind:value="buttonName"/>
     </form>
 </template>
@@ -33,15 +33,12 @@
             addressObject: {
                 type: Object
             },
-            addresses: {
-                type: Array
-            },
             buttonName: {
                 type: String,
                 default: 'Отправить'
             }
         },
-        data: function() {
+        data: function () {
             return {
                 index: -1,
                 surname: null,
@@ -52,11 +49,11 @@
                 errors: []
             }
         },
-        methods:{
-            submit: function(){
-                if(!this.checkData()){
-                    return;
-                }
+        methods: {
+            submit: function () {
+                //if(!this.checkData()){
+                //return;
+                //}
 
                 //var parameters = { index: this.index, surname : this.surname, name : this.name, middlename : this.middlename, addressString : this.addressString, phone : this.phone };
 
@@ -66,10 +63,8 @@
                 )
                     .then(res => {
                         this.index = res.data;
-                        console.log(res.data);
-                        console.log(this.index);
 
-                        if(this.addressObject != undefined) {
+                        if (this.addressObject != undefined) {
                             this.addressObject.index = this.index;
                             this.addressObject.surname = this.surname;
                             this.addressObject.name = this.name;
@@ -78,50 +73,48 @@
                             this.addressObject.phone = this.phone;
                         }
 
-                        if(this.addresses != undefined) {
-                            console.log(this.index);
-                            var addressObject = {
-                                index : this.index,
-                                surname : this.surname,
-                                name : this.name,
-                                middlename : this.middlename,
-                                address : this.addressString,
-                                phone : this.phone,
-                                orderNumber : this.addresses.length+1,
-                                addressUrl : '/Address/' + this.index
-                            }
-                            this.addresses[this.addresses.length] = addressObject;
+                        var addressObject = {
+                            index: this.index,
+                            surname: this.surname,
+                            name: this.name,
+                            middlename: this.middlename,
+                            address: this.addressString,
+                            phone: this.phone,
+                            orderNumber: -1,
+                            addressUrl: '/Address/' + this.index
                         }
+
+                        this.$emit('callback', addressObject)
 
                         this.$parent.close();
                     })
             },
-            checkData: function(){
-                if(!this.surname){
+            checkData: function () {
+                if (!this.surname) {
                     this.errors.push("Укажите фамилию");
                 }
-                if(!this.name){
+                if (!this.name) {
                     this.errors.push("Укажите имя");
                 }
-                if(!this.middlename){
+                if (!this.middlename) {
                     this.errors.push("Укажите отчество");
                 }
-                if(!this.address){
+                if (!this.address) {
                     this.errors.push("Укажите адрес");
                 }
-                if(!this.phone){
+                if (!this.phone) {
                     this.errors.push("Укажите номер телефона");
                 }
 
-                if(this.errors.length){
+                if (this.errors.length) {
                     return false;
-                }else{
+                } else {
                     return true;
                 }
             }
         },
-        created(){
-            if(this.addressObject != undefined){
+        created() {
+            if (this.addressObject != undefined) {
                 this.index = this.addressObject.index;
                 this.surname = this.addressObject.surname;
                 this.name = this.addressObject.name;
@@ -134,25 +127,25 @@
 </script>
 
 <style>
-    .modal_content{
+    .modal_content {
         display: flex;
         flex-direction: column;
         width: 30rem;
     }
 
-    .input_label{
+    .input_label {
         margin-top: 1rem;
     }
 
-    .input{
+    .input {
         padding: 0.4rem;
     }
 
-    .btn_submit{
+    .btn_submit {
         margin: 1.4rem 0;
     }
 
-    .error{
+    .error {
         padding: 1rem;
         background: #FF9999;
     }
