@@ -1,18 +1,11 @@
-# my-project
+# Общие сведения
+Проект представляет web-сайт адресной книги.
+Для использования необходимо запустить реализации сервера и клиента:
+1. Реализации сервера: AspNetServer.
+2. Реализации клиента: vuejs.
 
-> my-project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# Запуск vuejs:
+1. Установить node js. Если node js установлен, может потребоваться его обновление: ```npm i npm```;
+2. Перейти в каталог 'vuejs';
+3. Установить зависимости проекта: ```npm install```;
+4. Запустить проект: ```npm run dev```.
