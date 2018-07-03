@@ -5,7 +5,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 
 var axiosInstance = axios.create({
-    baseURL: 'http://localhost:55464',
+    baseURL: 'http://localhost:22080',
     timeout: 3000
 });
 
