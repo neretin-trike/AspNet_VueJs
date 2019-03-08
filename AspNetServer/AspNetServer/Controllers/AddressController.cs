@@ -22,9 +22,9 @@ namespace AspNet_VueJs.Controllers
             return result;
         }
 
-        [HttpGet(nameof(Info))]
+        [HttpPost(nameof(Info))]
         [Produces("application/json")]
-        public AddressItem Info(int addressIndex)
+        public AddressItem Info([FromForm] int addressIndex)
         {
             this.ControllerContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", AccessControlForUrlBase);
             var result = new AddressService().Address(addressIndex);
@@ -41,17 +41,17 @@ namespace AspNet_VueJs.Controllers
 
         }
 
-        [HttpGet(nameof(Remove))]
+        [HttpPost(nameof(Remove))]
         [Produces("application/json")]
-        public void Remove(int index)
+        public void Remove([FromForm] int index)
         {
             this.ControllerContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", AccessControlForUrlBase);
             new AddressService().Remove(index);
         }
 
-        [HttpGet(nameof(Change))]
+        [HttpPost(nameof(Change))]
         [Produces("application/json")]
-        public void Change(AddressItem item)
+        public void Change([FromForm] AddressItem item)
         {
             this.ControllerContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", AccessControlForUrlBase);
             new AddressService().Change(item);
