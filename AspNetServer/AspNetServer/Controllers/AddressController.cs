@@ -11,13 +11,10 @@ namespace AspNet_VueJs.Controllers
     [Route("api/[controller]")]
     public class AddressController : Controller
     {
-        private const string AccessControlForUrlBase = "http://localhost:8080";
-
         [HttpGet(nameof(Addresses))]
         [Produces("application/json")]
         public List<AddressItem> Addresses()
         {
-            this.ControllerContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", AccessControlForUrlBase);
             var result = new AddressService().Addresses();
             return result;
         }
@@ -26,7 +23,6 @@ namespace AspNet_VueJs.Controllers
         [Produces("application/json")]
         public AddressItem Info([FromForm] int addressIndex)
         {
-            this.ControllerContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", AccessControlForUrlBase);
             var result = new AddressService().Address(addressIndex);
             return result;
         }
@@ -35,7 +31,6 @@ namespace AspNet_VueJs.Controllers
         [Produces("application/json")]
         public int Add([FromForm] AddressItem item)
         {
-            this.ControllerContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", AccessControlForUrlBase);
             var result = new AddressService().Add(item);
             return result;
 
@@ -45,7 +40,6 @@ namespace AspNet_VueJs.Controllers
         [Produces("application/json")]
         public void Remove([FromForm] int index)
         {
-            this.ControllerContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", AccessControlForUrlBase);
             new AddressService().Remove(index);
         }
 
@@ -53,7 +47,6 @@ namespace AspNet_VueJs.Controllers
         [Produces("application/json")]
         public void Change([FromForm] AddressItem item)
         {
-            this.ControllerContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", AccessControlForUrlBase);
             new AddressService().Change(item);
         }
     }
